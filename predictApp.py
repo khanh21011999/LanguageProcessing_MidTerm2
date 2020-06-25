@@ -107,7 +107,10 @@ class Recorder():
         # testfile = list([kmeans.predict(testfile).reshape(-1, 1)])
 
     def predict(self):
-
+        class_names = ['chungta', 'cothe', 'duoc', 'nguoi','trong']
+        testSam = get_class_data('./')
+        score = {cname: model.score(testSam[0], [len(testSam[0])]) for cname, model in self.models.items()}
+        """
         testset1 = {}
         n_test1 = {}
         class_names = ['chungta', 'cothe', 'duoc', 'nguoi','trong']
@@ -125,7 +128,7 @@ class Recorder():
 
         self.text.set('Predicted: ' + self.predict_word)
 
-        """
+
 
         for true_cname in class_names:
             for O in testset1[true_cname]:
